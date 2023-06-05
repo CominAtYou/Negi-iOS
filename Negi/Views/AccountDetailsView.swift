@@ -11,6 +11,8 @@ struct AccountDetailsView: View {
     @State private var currentCode = ""
     @State private var nextCode = ""
     @State var hasFirstInitCompleted = false
+    @Environment(\.horizontalSizeClass) var sizeClass
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         NavigationStack {
@@ -30,19 +32,22 @@ struct AccountDetailsView: View {
                         }
                     }
                 }
-                .navigationTitle(account.name)
-                .onAppear {
-                    currentCode = totp.generate(time: Date())!
-                    nextCode = totp.generate(time: Date(timeIntervalSinceNow: TimeInterval(secondsToNextHop)))!
-                    
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-                        if (secondsToNextHop == 30) {
-                            currentCode = nextCode
-                            nextCode = totp.generate(time: Date(timeIntervalSinceNow: 30))!
-                        }
-                    })
-                }
+                .padding(.horizontal, sizeClass == .regular ? 40 : 0)
             }
+        }
+        .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemFill))
+        .navigationTitle(account.name)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            currentCode = totp.generate(time: Date())!
+            nextCode = totp.generate(time: Date(timeIntervalSinceNow: TimeInterval(secondsToNextHop)))!
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                if (secondsToNextHop == 30) {
+                    currentCode = nextCode
+                    nextCode = totp.generate(time: Date(timeIntervalSinceNow: 30))!
+                }
+            })
         }
     }
 }

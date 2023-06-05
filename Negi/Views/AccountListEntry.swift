@@ -2,6 +2,7 @@ import SwiftUI
 
 struct AccountListEntry: View {
     let account: Account
+    @Environment(\.horizontalSizeClass) var sizeClass
     
     var body: some View {
         HStack {
@@ -14,7 +15,7 @@ struct AccountListEntry: View {
                     RoundedRectangle(cornerRadius: 8)
                         .fill(.gray)
                 )
-                .padding(.trailing, 8)
+                .padding(.trailing, sizeClass == .regular ? 0 : 4)
             VStack(alignment: .leading) {
                 Text(account.name)
                 
