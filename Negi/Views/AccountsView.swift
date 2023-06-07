@@ -14,13 +14,13 @@ struct AccountsView: View {
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarState, sidebar: {
             Form { // Form to mitigate the behaviour where the sidebar absorbs the list
-                List {
+                List(selection: $selectedAccount) {
                     ForEach(searchResults) { account in
                         NavigationLink(destination: AccountDetailsView(account: account, secondsToNextHop: $secondsToNextHop)) {
                             AccountListEntry(account: account)
                         }
                     }
-                    .onMove{from, to in
+                    .onMove{ from, to in
                         accounts.move(fromOffsets: from, toOffset: to)
                         saveAccounts()
                     }

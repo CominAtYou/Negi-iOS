@@ -1,6 +1,6 @@
 import Foundation
 
-struct Account: Identifiable, Codable {
+struct Account: Identifiable, Codable, Hashable {
     var name: String
     var username: String
     var token: String
