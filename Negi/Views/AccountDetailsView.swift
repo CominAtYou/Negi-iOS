@@ -35,7 +35,7 @@ struct AccountDetailsView: View {
                 .padding(.horizontal, sizeClass == .regular ? 40 : 0)
             }
         }
-        .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemFill))
+        .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
         .navigationTitle(account.name)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
