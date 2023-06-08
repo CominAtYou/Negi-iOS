@@ -14,7 +14,7 @@ class LocalAuthenticationHandler {
         
         var error: NSError?
         guard context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) else {
-            print(error?.localizedDescription ?? "Can't evaluate policy")
+            NSLog(error?.localizedDescription ?? "Can't evaluate policy")
             return .incompatiblePolicy
         }
         

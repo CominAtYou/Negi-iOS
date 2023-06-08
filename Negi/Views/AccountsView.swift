@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AccountsView: View {
+    @State private var settingsSession = ""
     @State private var searchQuery = ""
     @Binding var accounts: [Account]
     @State private var isPresentingAddSheet = false
@@ -26,18 +27,21 @@ struct AccountsView: View {
             }
             .navigationTitle("Accounts")
             .toolbar {
-                AccountsViewMenu(isPresentingAddSheet: $isPresentingAddSheet)
+                AccountsViewMenu(isPresentingAddSheet: $isPresentingAddSheet, selectedAccount: $selectedAccount)
             }
         }, detail: {
-            ZStack {
-                if let selectedAccount {
-                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop)
+            if let selectedAccount {
+                if (selectedAccount.token == "_settingsaccountd") {
+                    SettingsView()
                 }
                 else {
-                    Text("No account selected")
-                        .font(.title)
-                        .opacity(0.4)
+                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop)
                 }
+            }
+            else {
+                Text("No account selected")
+                    .font(.title)
+                    .opacity(0.4)
             }
         })
         .navigationSplitViewStyle(.balanced)

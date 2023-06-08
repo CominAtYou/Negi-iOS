@@ -13,6 +13,7 @@
 		3E3A05362A2FF0B200B420DC /* LockedAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3A05352A2FF0B200B420DC /* LockedAppView.swift */; };
 		3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98D1B02A2D932D00B15827 /* AccountStore.swift */; };
 		3E98D1B42A2DA07600B15827 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */; };
+		3E9BD6202A322B230046181A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9BD61F2A322B230046181A /* SettingsView.swift */; };
 		3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EACC2812A2C5B8A00A358C4 /* AccountDetailsView.swift */; };
 		3EACC2862A2C73B700A358C4 /* AddAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EACC2852A2C73B700A358C4 /* AddAccountForm.swift */; };
 		3ECFE9D52A2C4E52001E9AEC /* NegiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFE9D42A2C4E52001E9AEC /* NegiApp.swift */; };
@@ -31,6 +32,7 @@
 		3E3A05352A2FF0B200B420DC /* LockedAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedAppView.swift; sourceTree = "<group>"; };
 		3E98D1B02A2D932D00B15827 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3E9BD61F2A322B230046181A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3EACC2812A2C5B8A00A358C4 /* AccountDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
 		3EACC2852A2C73B700A358C4 /* AddAccountForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountForm.swift; sourceTree = "<group>"; };
 		3ECFE9D12A2C4E52001E9AEC /* Negi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Negi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 				3ECFE9E52A2C52F5001E9AEC /* Models */,
 				3ECFE9E22A2C4E94001E9AEC /* Views */,
 				3ECFE9D42A2C4E52001E9AEC /* NegiApp.swift */,
+				3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */,
 				3ECFE9D82A2C4E53001E9AEC /* Assets.xcassets */,
 				3E98D1B22A2DA03D00B15827 /* Preview Content */,
 			);
@@ -101,6 +104,7 @@
 				3E3A05352A2FF0B200B420DC /* LockedAppView.swift */,
 				3E370D5D2A300AD4008762D9 /* LargeButton.swift */,
 				3E0926392A30FE9700BA21E7 /* AccountsViewMenu.swift */,
+				3E9BD61F2A322B230046181A /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,7 +114,6 @@
 			children = (
 				3ECFE9E62A2C5305001E9AEC /* Account.swift */,
 				3E98D1B02A2D932D00B15827 /* AccountStore.swift */,
-				3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				3E09263A2A30FE9700BA21E7 /* AccountsViewMenu.swift in Sources */,
 				3ECFE9D52A2C4E52001E9AEC /* NegiApp.swift in Sources */,
 				3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */,
+				3E9BD6202A322B230046181A /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
