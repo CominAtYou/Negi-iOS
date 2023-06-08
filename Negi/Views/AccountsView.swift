@@ -5,40 +5,40 @@ struct AccountsView: View {
     @Binding var accounts: [Account]
     @State private var isPresentingAddSheet = false
     @State var newAccount = Account.emptyAccount
-    @State var selectedAccount: Account?
+    @State private var selectedAccount: Account?
     @State var secondsToNextHop = 30
-    @State var isPresentingErrorAlert = false
-    @State var sidebarState = NavigationSplitViewVisibility.doubleColumn
+    @State private var isPresentingErrorAlert = false
+    @State private var sidebarState = NavigationSplitViewVisibility.doubleColumn
     let saveAccounts: () -> Void
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarState, sidebar: {
-            Form { // Form to mitigate the behaviour where the sidebar absorbs the list
-                List(selection: $selectedAccount) {
-                    ForEach(searchResults) { account in
-                        NavigationLink(destination: AccountDetailsView(account: account, secondsToNextHop: $secondsToNextHop)) {
-                            AccountListEntry(account: account)
-                        }
+            List(selection: $selectedAccount) {
+                ForEach(searchResults) { account in
+                    NavigationLink(value: account) {
+                        AccountListEntry(account: account)
                     }
-                    .onMove{ from, to in
-                        accounts.move(fromOffsets: from, toOffset: to)
-                        saveAccounts()
-                    }
+                }
+                .onMove{ from, to in
+                    accounts.move(fromOffsets: from, toOffset: to)
+                    saveAccounts()
                 }
             }
             .navigationTitle("Accounts")
             .toolbar {
-                Button(action: {
-                    isPresentingAddSheet = true
-                }) {
-                    Image(systemName: "plus")
+                AccountsViewMenu(isPresentingAddSheet: $isPresentingAddSheet)
+            }
+        }, detail: {
+            ZStack {
+                if let selectedAccount {
+                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop)
+                }
+                else {
+                    Text("No account selected")
+                        .font(.title)
+                        .opacity(0.4)
                 }
             }
-            .accessibilityLabel("Add account")
-        }, detail: {
-            Text("No account selected")
-                .font(.title)
-                .opacity(0.4)
         })
         .navigationSplitViewStyle(.balanced)
         .searchable(text: $searchQuery)

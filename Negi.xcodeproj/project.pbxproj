@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E09263A2A30FE9700BA21E7 /* AccountsViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0926392A30FE9700BA21E7 /* AccountsViewMenu.swift */; };
 		3E370D5C2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */; };
 		3E370D5E2A300AD4008762D9 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E370D5D2A300AD4008762D9 /* LargeButton.swift */; };
 		3E3A05362A2FF0B200B420DC /* LockedAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3A05352A2FF0B200B420DC /* LockedAppView.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E0926392A30FE9700BA21E7 /* AccountsViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewMenu.swift; sourceTree = "<group>"; };
 		3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationHandler.swift; sourceTree = "<group>"; };
 		3E370D5D2A300AD4008762D9 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		3E3A05352A2FF0B200B420DC /* LockedAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedAppView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				3EFF43E82A2D4FDD00510425 /* AddAccountSheet.swift */,
 				3E3A05352A2FF0B200B420DC /* LockedAppView.swift */,
 				3E370D5D2A300AD4008762D9 /* LargeButton.swift */,
+				3E0926392A30FE9700BA21E7 /* AccountsViewMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				3EFF43E92A2D4FDD00510425 /* AddAccountSheet.swift in Sources */,
 				3ECFE9D72A2C4E52001E9AEC /* AccountsView.swift in Sources */,
 				3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */,
+				3E09263A2A30FE9700BA21E7 /* AccountsViewMenu.swift in Sources */,
 				3ECFE9D52A2C4E52001E9AEC /* NegiApp.swift in Sources */,
 				3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */,
 			);
