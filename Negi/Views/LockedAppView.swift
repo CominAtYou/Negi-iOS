@@ -1,10 +1,3 @@
-//
-//  LockedAppView.swift
-//  Negi
-//
-//  Created by William Martin on 6/6/23.
-//
-
 import SwiftUI
 
 struct LockedAppView: View {

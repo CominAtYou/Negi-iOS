@@ -1,10 +1,3 @@
-//
-//  LargeButton.swift
-//  Negi
-//
-//  Created by William Martin on 6/6/23.
-//
-
 import SwiftUI
 
 struct LargeButton: View {

@@ -1,10 +1,3 @@
-//
-//  AccountsViewMenu.swift
-//  Negi
-//
-//  Created by William Martin on 6/7/23.
-//
-
 import SwiftUI
 
 struct AccountsViewMenu: View {
