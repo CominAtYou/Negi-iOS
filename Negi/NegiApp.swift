@@ -34,7 +34,7 @@ struct NegiApp: App {
             }
         }
         .onChange(of: scenePhase, perform: { newPhase in
-            if (newPhase == .background) {
+            if (newPhase == .background && UserDefaults.standard.bool(forKey: "AppLockEnabled")) {
                 isAppLocked = true
             }
         })
