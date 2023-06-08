@@ -10,9 +10,7 @@ struct AccountDetailsView: View {
     @Binding var secondsToNextHop: Int
     @State private var currentCode = ""
     @State private var nextCode = ""
-    @State var hasFirstInitCompleted = false
-    @Environment(\.horizontalSizeClass) var sizeClass
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         NavigationStack {
@@ -32,7 +30,6 @@ struct AccountDetailsView: View {
                         }
                     }
                 }
-                .padding(.horizontal, sizeClass == .regular ? 40 : 0)
             }
         }
         .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
