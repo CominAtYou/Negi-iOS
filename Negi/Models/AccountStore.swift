@@ -14,6 +14,7 @@ class AccountStore: ObservableObject {
             let fileURL = try Self.getFileURL()
             guard let data = try? Data(contentsOf: fileURL) else { return [] }
             let accounts = try JSONDecoder().decode([Account].self, from: data)
+            NSLog("Retrieved %d accounts from AccountStore", accounts.count)
             
             return accounts
         }
@@ -27,6 +28,8 @@ class AccountStore: ObservableObject {
             let data = try JSONEncoder().encode(accounts)
             let outFile = try Self.getFileURL()
             try data.write(to: outFile)
+            
+            NSLog("Wrote %d accounts to AccountStore", accounts.count)
         }
         
         _ = try await task.value
