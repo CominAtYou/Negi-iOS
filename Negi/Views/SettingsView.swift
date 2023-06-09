@@ -52,6 +52,7 @@ struct SettingsView: View {
                                     (UIApplication.shared.connectedScenes.first?.delegate as? UIWindowSceneDelegate)?.window!?.rootViewController?.present(controller, animated: true)
                                 }
                                 catch {
+                                    // TODO: Display a dialog if something fails
                                     fatalError(error.localizedDescription)
                                 }
                             }

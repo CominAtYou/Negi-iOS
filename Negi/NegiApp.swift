@@ -19,6 +19,7 @@ struct NegiApp: App {
                             try await accountStore.save()
                         }
                         catch {
+                            // TODO: Do something instead of this
                             fatalError(error.localizedDescription)
                         }
                     }
@@ -28,6 +29,7 @@ struct NegiApp: App {
                         try await accountStore.load()
                     }
                     catch {
+                        // TODO: Fall back to a backup
                         fatalError(error.localizedDescription)
                     }
                 }
