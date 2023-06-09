@@ -5,30 +5,40 @@ struct AccountListEntry: View {
     @Environment(\.horizontalSizeClass) var sizeClass
     
     var body: some View {
-        HStack {
-            Text(account.name.prefix(1))
-                .font(.system(size: 20))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .frame(width: 35, height: 35)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(.gray)
-                )
-                .padding(.trailing, sizeClass == .regular ? 0 : 4)
-            VStack(alignment: .leading) {
-                Text(account.name)
-                
-                Spacer()
-                    .frame(height: 2)
-                
-                Text(account.username)
-                    .font(.subheadline)
-                    .opacity(0.6)
-                    .lineLimit(1)
-            }
+    Label {
+        VStack(alignment: .leading) {
+            Text(account.name)
+                .foregroundColor(Color(UIColor.label))
             
             Spacer()
+                .frame(height: 2)
+            
+            Text(account.username)
+                .font(.subheadline)
+                .foregroundColor(Color(UIColor.label))
+                .opacity(0.6)
+                .lineLimit(1)
+        }
+        
+        Spacer()
+        } icon: {
+            let imageExists = UIImage(systemName: "\(account.name.prefix(1).lowercased()).circle.fill") != nil
+            Image(systemName: imageExists ? "\(account.name.prefix(1).lowercased()).circle.fill" : "person.circle.fill")
+                .symbolRenderingMode(.multicolor)
+                .resizable()
+                .frame(width: 35, height: 35)
+                .foregroundColor(.gray)
+        }
+        .labelStyle(CenteredIconLabelStyle())
+    }
+}
+
+struct CenteredIconLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 0) {
+            configuration.icon
+                .padding(.trailing, 15)
+            configuration.title
         }
     }
 }
