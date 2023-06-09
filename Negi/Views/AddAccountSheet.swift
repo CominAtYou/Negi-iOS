@@ -3,7 +3,6 @@ import SwiftOTP
 
 struct AddAccountSheet: View {
     @State var newAccount = Account.emptyAccount
-    @State var isPresentingErrorAlert = false
     @Binding var isPresentingAddSheet: Bool
     @Binding var accounts: [Account]
     
@@ -24,22 +23,14 @@ struct AddAccountSheet: View {
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Done") {
                             let token = newAccount.token.filter { !$0.isWhitespace }
-                            if (base32DecodeToData(token) != nil) {
-                                isPresentingAddSheet = false
-                                newAccount.token = token
-                                accounts.append(newAccount)
-                                newAccount = Account.emptyAccount
-                                saveAction()
-                            }
-                            else {
-                                isPresentingErrorAlert = true
-                            }
+                            isPresentingAddSheet = false
+                            newAccount.token = base32DecodeToData(token) != nil ? token : base32Encode(token.data(using: .utf8)!)
+                            accounts.append(newAccount)
+                            newAccount = Account.emptyAccount
+                            saveAction()
                         }
                         .disabled(newAccount.name.isEmpty || newAccount.username.isEmpty || newAccount.token.isEmpty)
                     }
-                }
-                .alert(isPresented: $isPresentingErrorAlert) {
-                    Alert(title: Text("Invalid Token"), message: Text("That token doesn't look right. Make sure you typed it correctly and try again."))
                 }
         }
     }
