@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct AccountsView: View {
-    @State private var settingsSession = ""
     @State private var searchQuery = ""
     @Binding var accounts: [Account]
     @State private var isPresentingAddSheet = false
@@ -10,7 +9,7 @@ struct AccountsView: View {
     @State var secondsToNextHop = 30
     @State private var isPresentingErrorAlert = false
     @State private var sidebarState = NavigationSplitViewVisibility.doubleColumn
-    let saveAccounts: () -> Void
+    let saveAccountsFunction: () -> Void
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarState, sidebar: {
@@ -22,7 +21,7 @@ struct AccountsView: View {
                 }
                 .onMove{ from, to in
                     accounts.move(fromOffsets: from, toOffset: to)
-                    saveAccounts()
+                    saveAccountsFunction()
                 }
             }
             .navigationTitle("Accounts")
@@ -32,7 +31,7 @@ struct AccountsView: View {
         }, detail: {
             if let selectedAccount {
                 if (selectedAccount.token == "_settingsaccountd") {
-                    SettingsView()
+                    SettingsView(accounts: $accounts)
                 }
                 else {
                     AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop)
@@ -48,7 +47,7 @@ struct AccountsView: View {
         .searchable(text: $searchQuery)
         .sheet(isPresented: $isPresentingAddSheet) {
             AddAccountSheet(isPresentingAddSheet: $isPresentingAddSheet, accounts: $accounts) {
-                saveAccounts()
+                saveAccountsFunction()
             }
         }
         .onAppear {
@@ -71,6 +70,6 @@ struct AccountsView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountsView(accounts: .constant(Account.sampleData), saveAccounts: {})
+        AccountsView(accounts: .constant(Account.sampleData), saveAccountsFunction: {})
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 class AccountStore: ObservableObject {
     @Published var accounts: [Account] = []
     
-    private static func getFileURL() throws -> URL {
+    static func getFileURL() throws -> URL {
         try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent("accounts.json")
     }

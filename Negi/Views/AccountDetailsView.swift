@@ -31,10 +31,10 @@ struct AccountDetailsView: View {
                     }
                 }
             }
+            .navigationTitle(account.name)
+            .navigationBarTitleDisplayMode(.inline)
         }
         .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
-        .navigationTitle(account.name)
-        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             currentCode = totp.generate(time: Date())!
             nextCode = totp.generate(time: Date(timeIntervalSinceNow: TimeInterval(secondsToNextHop)))!
