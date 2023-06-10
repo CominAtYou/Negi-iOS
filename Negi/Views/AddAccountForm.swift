@@ -9,6 +9,8 @@ struct AddAccountForm: View {
     }
     @FocusState private var focusedField: Field?
     
+    let submitAction: () -> Void
+    
     var body: some View {
         Form {
             Section(header: Text("Account info")) {
@@ -38,6 +40,12 @@ struct AddAccountForm: View {
                         .textInputAutocapitalization(.never)
                         .multilineTextAlignment(.trailing)
                         .focused($focusedField, equals: .token)
+                        .submitLabel(.done)
+                        .onSubmit {
+                            if (account.token.isEmpty || account.username.isEmpty || account.name.isEmpty ) { return }
+                            
+                            submitAction()
+                        }
                 } label: {
                     Text("Token")
                 }
@@ -51,6 +59,6 @@ struct AddAccountForm: View {
 
 struct AddAccountForm_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccountForm(account: .constant(Account.emptyAccount))
+        AddAccountForm(account: .constant(Account.emptyAccount), submitAction: {})
     }
 }

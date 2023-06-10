@@ -7,10 +7,18 @@ struct AddAccountSheet: View {
     @Binding var accounts: [Account]
     
     let saveAction: () -> Void
+    func submitAction() {
+        let token = newAccount.token.filter { !$0.isWhitespace }
+        isPresentingAddSheet = false
+        newAccount.token = base32DecodeToData(token) != nil ? token : base32Encode(token.data(using: .utf8)!)
+        accounts.append(newAccount)
+        newAccount = Account.emptyAccount
+        saveAction()
+    }
     
     var body: some View {
         NavigationStack {
-            AddAccountForm(account: $newAccount)
+            AddAccountForm(account: $newAccount, submitAction: submitAction)
                 .navigationTitle("Add Account")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -22,11 +30,6 @@ struct AddAccountSheet: View {
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Done") {
-                            let token = newAccount.token.filter { !$0.isWhitespace }
-                            isPresentingAddSheet = false
-                            newAccount.token = base32DecodeToData(token) != nil ? token : base32Encode(token.data(using: .utf8)!)
-                            accounts.append(newAccount)
-                            newAccount = Account.emptyAccount
                             saveAction()
                         }
                         .disabled(newAccount.name.isEmpty || newAccount.username.isEmpty || newAccount.token.isEmpty)
