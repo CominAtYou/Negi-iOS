@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AccountsViewMenu: View {
+    @State var isPresentingErrorAlert = false
     @Binding var isPresentingMainSheet: Bool
     @Binding var isPresentingCodeScanner: Bool
     @Binding var selectedAccount: Account?
@@ -9,8 +10,15 @@ struct AccountsViewMenu: View {
         Menu {
             Menu {
                 Button {
-                    isPresentingCodeScanner = true
-                    isPresentingMainSheet = true
+                    Task {
+                        if await CameraPermissions.requestPermissions() == .authorized {
+                            isPresentingCodeScanner = true
+                            isPresentingMainSheet = true
+                        }
+                        else {
+                            isPresentingErrorAlert = true
+                        }
+                    }
                 } label: {
                     Label("Scan QR Code", systemImage: "qrcode.viewfinder")
                 }
@@ -31,6 +39,17 @@ struct AccountsViewMenu: View {
             }
         } label: {
             Label("Options", systemImage: "ellipsis.circle")
+        }
+        .alert(isPresented: $isPresentingErrorAlert) {
+            Alert(
+                title: Text("Can't Access Camera"),
+                message: Text("Negi doesn't have permission to access the camera. You can enable the camera permission in Settings in order to scan a QR code."),
+                primaryButton: .default(Text("Open Settings")) {
+                    let url = URL(string: UIApplication.openSettingsURLString)!
+                    UIApplication.shared.open(url, options: [:])
+                },
+                secondaryButton: .cancel()
+            )
         }
     }
 }

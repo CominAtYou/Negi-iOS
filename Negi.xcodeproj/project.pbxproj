@@ -25,6 +25,7 @@
 		3ECFE9D92A2C4E53001E9AEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ECFE9D82A2C4E53001E9AEC /* Assets.xcassets */; };
 		3ECFE9E42A2C4EAC001E9AEC /* AccountListEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFE9E32A2C4EAC001E9AEC /* AccountListEntry.swift */; };
 		3ECFE9E72A2C5305001E9AEC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFE9E62A2C5305001E9AEC /* Account.swift */; };
+		3EDF547E2A3517F800606EA8 /* CameraPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDF547D2A3517F800606EA8 /* CameraPermissions.swift */; };
 		3EFF43E72A2D3ED700510425 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 3EFF43E62A2D3ED700510425 /* SwiftOTP */; };
 		3EFF43E92A2D4FDD00510425 /* AddAccountSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFF43E82A2D4FDD00510425 /* AddAccountSheet.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		3ECFE9D82A2C4E53001E9AEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3ECFE9E32A2C4EAC001E9AEC /* AccountListEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListEntry.swift; sourceTree = "<group>"; };
 		3ECFE9E62A2C5305001E9AEC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		3EDF547D2A3517F800606EA8 /* CameraPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPermissions.swift; sourceTree = "<group>"; };
 		3EFF43E82A2D4FDD00510425 /* AddAccountSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +100,7 @@
 				3E44D6532A33EB7F006712E4 /* OtpUriHandler.swift */,
 				3ECFE9D82A2C4E53001E9AEC /* Assets.xcassets */,
 				3E98D1B22A2DA03D00B15827 /* Preview Content */,
+				3EDF547D2A3517F800606EA8 /* CameraPermissions.swift */,
 			);
 			path = Negi;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				3E370D5C2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift in Sources */,
 				3EACC2862A2C73B700A358C4 /* AddAccountForm.swift in Sources */,
 				3EFF43E92A2D4FDD00510425 /* AddAccountSheet.swift in Sources */,
+				3EDF547E2A3517F800606EA8 /* CameraPermissions.swift in Sources */,
 				3ECFE9D72A2C4E52001E9AEC /* AccountsView.swift in Sources */,
 				3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */,
 				3E09263A2A30FE9700BA21E7 /* AccountsViewMenu.swift in Sources */,
