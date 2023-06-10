@@ -15,7 +15,7 @@ struct AccountDetailsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Form {
+                List {
                     Section(header: Text("Account info"), footer: Text("The next code will be available in \(secondsToNextHop) second\(secondsToNextHop == 1 ? "" : "s").")
                         ) {
                         LabeledContent {
