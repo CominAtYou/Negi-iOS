@@ -1,10 +1,3 @@
-//
-//  CodeScannerSheet.swift
-//  Negi
-//
-//  Created by William Martin on 6/9/23.
-//
-
 import SwiftUI
 import CodeScanner
 
@@ -14,7 +7,7 @@ struct CodeScannerSheet: View {
     @Binding var isPresentingCodeScanner: Bool
     @Binding var accounts: [Account]
     let saveAccountsFunction: () -> Void
-    
+
     var body: some View {
         NavigationView {
             CodeScannerView(codeTypes: [.qr], showViewfinder: true) { response in
@@ -26,10 +19,10 @@ struct CodeScannerSheet: View {
                         }
                         accounts.append(newAccount)
                         saveAccountsFunction()
-                    
+
                         isPresentingMainSheet = false
                         isPresentingCodeScanner = false
-                    
+
                     case .failure(let error):
                         isPresentingErrorAlert = true
                         NSLog(error.localizedDescription)
