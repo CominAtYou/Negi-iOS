@@ -24,7 +24,7 @@ struct AccountsViewMenu: View {
             }
             Button {
                 // This is stupid. This was the easiest way to get NavigationSplitView to cooporate though
-                // "_settngsaccountd" isn't valid base32, so the add account sheet will prevent accounts being made with it as a token
+                // "_settngsaccountd" will get encoded as base32 if someone tries to manually add an account with it as a token, so no account can present the settings sheet
                 selectedAccount = Account(name: "", username: "", token: "_settingsaccountd")
             } label: {
                 Label("Settings", systemImage: "gear")
