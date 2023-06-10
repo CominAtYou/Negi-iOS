@@ -10,7 +10,6 @@ struct AccountDetailsView: View {
     @Binding var secondsToNextHop: Int
     @State private var currentCode = ""
     @State private var nextCode = ""
-    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         NavigationStack {
@@ -34,7 +33,6 @@ struct AccountDetailsView: View {
             .navigationTitle(account.name)
             .navigationBarTitleDisplayMode(.inline)
         }
-        .background(Color(colorScheme == .dark ? UIColor.systemBackground : UIColor.secondarySystemBackground))
         .onAppear {
             currentCode = totp.generate(time: Date())!
             nextCode = totp.generate(time: Date(timeIntervalSinceNow: TimeInterval(secondsToNextHop)))!
