@@ -11,6 +11,10 @@
 		3E370D5C2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */; };
 		3E370D5E2A300AD4008762D9 /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E370D5D2A300AD4008762D9 /* LargeButton.swift */; };
 		3E3A05362A2FF0B200B420DC /* LockedAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3A05352A2FF0B200B420DC /* LockedAppView.swift */; };
+		3E44D6522A33E983006712E4 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 3E44D6512A33E983006712E4 /* CodeScanner */; };
+		3E44D6542A33EB7F006712E4 /* OtpUriHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E44D6532A33EB7F006712E4 /* OtpUriHandler.swift */; };
+		3E44D6582A3401EB006712E4 /* ExportAccountsShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E44D6572A3401EB006712E4 /* ExportAccountsShareSheet.swift */; };
+		3E44D65A2A340BE0006712E4 /* CodeScannerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E44D6592A340BE0006712E4 /* CodeScannerSheet.swift */; };
 		3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98D1B02A2D932D00B15827 /* AccountStore.swift */; };
 		3E98D1B42A2DA07600B15827 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */; };
 		3E9BD6202A322B230046181A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9BD61F2A322B230046181A /* SettingsView.swift */; };
@@ -30,6 +34,9 @@
 		3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationHandler.swift; sourceTree = "<group>"; };
 		3E370D5D2A300AD4008762D9 /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		3E3A05352A2FF0B200B420DC /* LockedAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockedAppView.swift; sourceTree = "<group>"; };
+		3E44D6532A33EB7F006712E4 /* OtpUriHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtpUriHandler.swift; sourceTree = "<group>"; };
+		3E44D6572A3401EB006712E4 /* ExportAccountsShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportAccountsShareSheet.swift; sourceTree = "<group>"; };
+		3E44D6592A340BE0006712E4 /* CodeScannerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeScannerSheet.swift; sourceTree = "<group>"; };
 		3E98D1B02A2D932D00B15827 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E9BD61F2A322B230046181A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -49,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E44D6522A33E983006712E4 /* CodeScanner in Frameworks */,
 				3EFF43E72A2D3ED700510425 /* SwiftOTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +95,7 @@
 				3ECFE9E22A2C4E94001E9AEC /* Views */,
 				3ECFE9D42A2C4E52001E9AEC /* NegiApp.swift */,
 				3E370D5B2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift */,
+				3E44D6532A33EB7F006712E4 /* OtpUriHandler.swift */,
 				3ECFE9D82A2C4E53001E9AEC /* Assets.xcassets */,
 				3E98D1B22A2DA03D00B15827 /* Preview Content */,
 			);
@@ -105,6 +114,8 @@
 				3E370D5D2A300AD4008762D9 /* LargeButton.swift */,
 				3E0926392A30FE9700BA21E7 /* AccountsViewMenu.swift */,
 				3E9BD61F2A322B230046181A /* SettingsView.swift */,
+				3E44D6572A3401EB006712E4 /* ExportAccountsShareSheet.swift */,
+				3E44D6592A340BE0006712E4 /* CodeScannerSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,6 +147,7 @@
 			name = Negi;
 			packageProductDependencies = (
 				3EFF43E62A2D3ED700510425 /* SwiftOTP */,
+				3E44D6512A33E983006712E4 /* CodeScanner */,
 			);
 			productName = Negi;
 			productReference = 3ECFE9D12A2C4E52001E9AEC /* Negi.app */;
@@ -167,6 +179,7 @@
 			mainGroup = 3ECFE9C82A2C4E52001E9AEC;
 			packageReferences = (
 				3EFF43E52A2D3ED700510425 /* XCRemoteSwiftPackageReference "SwiftOTP" */,
+				3E44D6502A33E983006712E4 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 3ECFE9D22A2C4E52001E9AEC /* Products */;
 			projectDirPath = "";
@@ -195,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E3A05362A2FF0B200B420DC /* LockedAppView.swift in Sources */,
+				3E44D6582A3401EB006712E4 /* ExportAccountsShareSheet.swift in Sources */,
 				3E370D5E2A300AD4008762D9 /* LargeButton.swift in Sources */,
 				3ECFE9E42A2C4EAC001E9AEC /* AccountListEntry.swift in Sources */,
 				3ECFE9E72A2C5305001E9AEC /* Account.swift in Sources */,
@@ -205,8 +219,10 @@
 				3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */,
 				3E09263A2A30FE9700BA21E7 /* AccountsViewMenu.swift in Sources */,
 				3ECFE9D52A2C4E52001E9AEC /* NegiApp.swift in Sources */,
+				3E44D6542A33EB7F006712E4 /* OtpUriHandler.swift in Sources */,
 				3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */,
 				3E9BD6202A322B230046181A /* SettingsView.swift in Sources */,
+				3E44D65A2A340BE0006712E4 /* CodeScannerSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +354,7 @@
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Negi uses the camera to let you add accounts by scanning a QR code.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Negi uses Face ID to allow you to quickly verify that it's you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -368,6 +385,7 @@
 				DEVELOPMENT_TEAM = 839U72R654;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Negi uses the camera to let you add accounts by scanning a QR code.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "Negi uses Face ID to allow you to quickly verify that it's you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -411,6 +429,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3E44D6502A33E983006712E4 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		3EFF43E52A2D3ED700510425 /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lachlanbell/SwiftOTP";
@@ -422,6 +448,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3E44D6512A33E983006712E4 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E44D6502A33E983006712E4 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		3EFF43E62A2D3ED700510425 /* SwiftOTP */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3EFF43E52A2D3ED700510425 /* XCRemoteSwiftPackageReference "SwiftOTP" */;

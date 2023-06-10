@@ -1,13 +1,14 @@
 import SwiftUI
+import CodeScanner
 
 struct AccountsView: View {
     @State private var searchQuery = ""
     @Binding var accounts: [Account]
-    @State private var isPresentingAddSheet = false
-    @State var newAccount = Account.emptyAccount
+    @State private var isPresentingMainSheet = false
     @State private var selectedAccount: Account?
     @State var secondsToNextHop = 30
-    @State private var isPresentingErrorAlert = false
+    @State var isPresentingErrorAlert = false
+    @State var isPresentingCodeScanner = false
     @State private var sidebarState = NavigationSplitViewVisibility.doubleColumn
     let saveAccountsFunction: () -> Void
     
@@ -26,7 +27,7 @@ struct AccountsView: View {
             }
             .navigationTitle("Accounts")
             .toolbar {
-                AccountsViewMenu(isPresentingAddSheet: $isPresentingAddSheet, selectedAccount: $selectedAccount)
+                AccountsViewMenu(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, selectedAccount: $selectedAccount)
             }
         }, detail: {
             if let selectedAccount {
@@ -45,9 +46,13 @@ struct AccountsView: View {
         })
         .navigationSplitViewStyle(.balanced)
         .searchable(text: $searchQuery)
-        .sheet(isPresented: $isPresentingAddSheet) {
-            AddAccountSheet(isPresentingAddSheet: $isPresentingAddSheet, accounts: $accounts) {
-                saveAccountsFunction()
+        .sheet(isPresented: $isPresentingMainSheet) {
+            if (isPresentingCodeScanner) {
+                // TODO: Display error if camera permissions aren't enabled
+                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, accounts: $accounts, saveAccountsFunction: saveAccountsFunction)
+            }
+            else {
+                AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet, accounts: $accounts, saveAction: saveAccountsFunction)
             }
         }
         .onAppear {
