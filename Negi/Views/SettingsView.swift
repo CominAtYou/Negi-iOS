@@ -47,14 +47,7 @@ struct SettingsView: View {
                         Task {
                             let result = await LocalAuthenticationHandler.authenticate()
                             if (result == .success || result == .incompatiblePolicy) {
-                                do {
-                                    let controller = UIActivityViewController(activityItems: [try AccountStore.getFileURL()], applicationActivities: nil)
-                                    (UIApplication.shared.connectedScenes.first?.delegate as? UIWindowSceneDelegate)?.window!?.rootViewController?.present(controller, animated: true)
-                                }
-                                catch {
-                                    // TODO: Display a dialog if something fails
-                                    fatalError(error.localizedDescription)
-                                }
+                                isPresentingExportSheet = true
                             }
                         }
                     }) {
@@ -80,6 +73,12 @@ struct SettingsView: View {
         }
         .alert(isPresented: $isPresntingAlertDialog) {
             Alert(title: Text("App Lock Unavailable"), message: Text("You must set up a passcode in Settings in order to use app lock."))
+        }
+        .sheet(isPresented: $isPresentingExportSheet) {
+            VStack {
+                ExportAccountsShareSheet()
+                    .ignoresSafeArea(.container, edges: .bottom)
+            }
         }
     }
 }
