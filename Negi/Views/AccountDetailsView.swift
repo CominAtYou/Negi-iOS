@@ -8,8 +8,12 @@ struct AccountDetailsView: View {
         return TOTP(secret: base32DecodeToData(account.token)!)!
     }
     @Binding var secondsToNextHop: Int
+    @Binding var selectedAccount: Account?
+    @Binding var accounts: [Account]
     @State private var currentCode = ""
     @State private var nextCode = ""
+    @State private var isPresentingAlert = false
+    let saveAction: () -> Void
     
     var body: some View {
         NavigationStack {
@@ -32,6 +36,17 @@ struct AccountDetailsView: View {
             }
             .navigationTitle(account.name)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Menu {
+                    Button(role: .destructive, action: {
+                        isPresentingAlert = true
+                    }) {
+                        Label("Delete", systemImage: "trash")
+                    }
+                } label: {
+                    Label("Options", systemImage: "ellipsis.circle")
+                }
+            }
         }
         .onAppear {
             currentCode = totp.generate(time: Date())!
@@ -44,11 +59,25 @@ struct AccountDetailsView: View {
                 }
             })
         }
+        .alert(isPresented: $isPresentingAlert) {
+            Alert(
+                title: Text("Delete Account?"),
+                  message: Text("Are you sure you want to delete this account? You won't be able to get verification codes for the account anymore."),
+                primaryButton: .cancel(),
+                secondaryButton: .destructive(Text("Delete")) {
+                    selectedAccount = nil
+                    accounts.removeAll(where: {
+                        $0.id == account.id
+                    })
+                    saveAction()
+                }
+            )
+        }
     }
 }
 
 struct AccountDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15))
+        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15), selectedAccount: .constant(nil), accounts: .constant(Account.sampleData), saveAction: {})
     }
 }

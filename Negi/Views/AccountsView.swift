@@ -35,7 +35,7 @@ struct AccountsView: View {
                     SettingsView(accounts: $accounts)
                 }
                 else {
-                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop)
+                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop, selectedAccount: $selectedAccount, accounts: $accounts, saveAction: saveAccountsFunction)
                 }
             }
             else {
