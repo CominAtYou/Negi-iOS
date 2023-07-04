@@ -62,7 +62,7 @@ struct AccountDetailsView: View {
         .alert(isPresented: $isPresentingAlert) {
             Alert(
                 title: Text("Delete Account?"),
-                  message: Text("Are you sure you want to delete this account? You won't be able to get verification codes for the account anymore."),
+                  message: Text("Are you sure you want to delete this account? You won't be able to get verification codes for the account any more."),
                 primaryButton: .cancel(),
                 secondaryButton: .destructive(Text("Delete")) {
                     selectedAccount = nil
