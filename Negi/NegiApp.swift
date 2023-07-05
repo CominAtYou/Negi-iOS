@@ -37,12 +37,14 @@ struct NegiApp: App {
             }
         }
         .onChange(of: scenePhase, perform: { newPhase in
-            if (newPhase == .background && UserDefaults.standard.bool(forKey: "AppLockEnabled")) {
+            let isAppLockEnabled = UserDefaults.standard.bool(forKey: "AppLockEnabled")
+            
+            if (newPhase == .background && isAppLockEnabled) {
                 isAppLocked = true
                 hasAttemptedAutomaticUnlock = false
             }
             
-            if (newPhase == .active && !hasAttemptedAutomaticUnlock) {
+            if (newPhase == .active && !hasAttemptedAutomaticUnlock && isAppLockEnabled) {
                 Task {
                     if await LocalAuthenticationHandler.authenticate() == .success {
                         isAppLocked = false
