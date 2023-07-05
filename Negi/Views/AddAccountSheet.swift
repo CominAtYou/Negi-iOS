@@ -30,7 +30,7 @@ struct AddAccountSheet: View {
                     }
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Done") {
-                            saveAction()
+                            submitAction()
                         }
                         .disabled(newAccount.name.isEmpty || newAccount.username.isEmpty || newAccount.token.isEmpty)
                     }
