@@ -20,7 +20,9 @@ class AccountStore: ObservableObject {
         }
         
         let savedAccounts = try await task.value
-        self.accounts = savedAccounts
+        await MainActor.run {
+            self.accounts = savedAccounts
+        }
     }
     
     func save() async throws {
