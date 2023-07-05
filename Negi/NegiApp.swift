@@ -5,6 +5,7 @@ import Foundation
 struct NegiApp: App {
     @StateObject var accountStore = AccountStore()
     @State var isAppLocked = UserDefaults.standard.bool(forKey: "AppLockEnabled")
+    @State var hasAttemptedAutomaticUnlock = false
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some Scene {
@@ -38,6 +39,17 @@ struct NegiApp: App {
         .onChange(of: scenePhase, perform: { newPhase in
             if (newPhase == .background && UserDefaults.standard.bool(forKey: "AppLockEnabled")) {
                 isAppLocked = true
+                hasAttemptedAutomaticUnlock = false
+            }
+            
+            if (newPhase == .active && !hasAttemptedAutomaticUnlock) {
+                Task {
+                    if await LocalAuthenticationHandler.authenticate() == .success {
+                        isAppLocked = false
+                    }
+                    
+                    hasAttemptedAutomaticUnlock = true
+                }
             }
         })
     }
