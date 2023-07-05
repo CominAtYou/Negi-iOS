@@ -22,7 +22,9 @@ struct LockedAppView: View {
                         }
                     }
                 }
-            }.frame(maxHeight: .infinity, alignment: .bottom)
+            }
+            .frame(maxHeight: .infinity, alignment: .bottom)
+            .padding(.bottom, 16)
         }
     }
 }
