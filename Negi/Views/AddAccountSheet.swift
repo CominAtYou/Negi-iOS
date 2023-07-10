@@ -4,14 +4,14 @@ import SwiftOTP
 struct AddAccountSheet: View {
     @State var newAccount = Account.emptyAccount
     @Binding var isPresentingAddSheet: Bool
-    @Binding var accounts: [Account]
+    @EnvironmentObject var accountStore: AccountStore
     
     let saveAction: () -> Void
     func submitAction() {
         let token = newAccount.token.filter { !$0.isWhitespace }
         isPresentingAddSheet = false
         newAccount.token = base32DecodeToData(token) != nil ? token : base32Encode(token.data(using: .utf8)!)
-        accounts.append(newAccount)
+        accountStore.accounts.append(newAccount)
         newAccount = Account.emptyAccount
         saveAction()
     }
@@ -41,6 +41,6 @@ struct AddAccountSheet: View {
 
 struct AddAccountSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccountSheet(isPresentingAddSheet: .constant(false), accounts: .constant(Account.sampleData), saveAction: {})
+        AddAccountSheet(isPresentingAddSheet: .constant(false), saveAction: {})
     }
 }

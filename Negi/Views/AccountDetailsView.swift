@@ -9,7 +9,7 @@ struct AccountDetailsView: View {
     }
     @Binding var secondsToNextHop: Int
     @Binding var selectedAccount: Account?
-    @Binding var accounts: [Account]
+    @EnvironmentObject var accountStore: AccountStore
     @State private var currentCode = ""
     @State private var nextCode = ""
     @State private var isPresentingAlert = false
@@ -66,7 +66,7 @@ struct AccountDetailsView: View {
                 primaryButton: .cancel(),
                 secondaryButton: .destructive(Text("Delete")) {
                     selectedAccount = nil
-                    accounts.removeAll(where: {
+                    accountStore.accounts.removeAll(where: {
                         $0.id == account.id
                     })
                     saveAction()
@@ -78,6 +78,6 @@ struct AccountDetailsView: View {
 
 struct AccountDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15), selectedAccount: .constant(nil), accounts: .constant(Account.sampleData), saveAction: {})
+        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15), selectedAccount: .constant(nil), saveAction: {})
     }
 }

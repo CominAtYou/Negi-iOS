@@ -3,6 +3,7 @@ import Foundation
 
 @main
 struct NegiApp: App {
+    
     @StateObject var accountStore = AccountStore()
     @State var isAppLocked = UserDefaults.standard.bool(forKey: "AppLockEnabled")
     @State var hasAttemptedAutomaticUnlock = false
@@ -14,7 +15,7 @@ struct NegiApp: App {
                 LockedAppView(isAppLocked: $isAppLocked)
             }
             else {
-                AccountsView(accounts: $accountStore.accounts) {
+                AccountsView() {
                     Task {
                         do {
                             try await accountStore.save()
@@ -25,6 +26,7 @@ struct NegiApp: App {
                         }
                     }
                 }
+                .environmentObject(accountStore)
                 .task {
                     do {
                         try await accountStore.load()

@@ -3,7 +3,7 @@ import CodeScanner
 
 struct AccountsView: View {
     @State private var searchQuery = ""
-    @Binding var accounts: [Account]
+    @EnvironmentObject var accountStore: AccountStore
     @State private var isPresentingMainSheet = false
     @State private var selectedAccount: Account?
     @State var secondsToNextHop = 30
@@ -21,7 +21,7 @@ struct AccountsView: View {
                     }
                 }
                 .onMove{ from, to in
-                    accounts.move(fromOffsets: from, toOffset: to)
+                    accountStore.accounts.move(fromOffsets: from, toOffset: to)
                     saveAccountsFunction()
                 }
             }
@@ -32,10 +32,10 @@ struct AccountsView: View {
         }, detail: {
             if let selectedAccount {
                 if (selectedAccount.token == "_settingsaccountd") {
-                    SettingsView(accounts: $accounts)
+                    SettingsView()
                 }
                 else {
-                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop, selectedAccount: $selectedAccount, accounts: $accounts, saveAction: saveAccountsFunction)
+                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop, selectedAccount: $selectedAccount, saveAction: saveAccountsFunction)
                 }
             }
             else {
@@ -49,10 +49,10 @@ struct AccountsView: View {
         .sheet(isPresented: $isPresentingMainSheet) {
             if (isPresentingCodeScanner) {
                 // TODO: Display error if camera permissions aren't enabled
-                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, accounts: $accounts, saveAccountsFunction: saveAccountsFunction)
+                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, saveAccountsFunction: saveAccountsFunction)
             }
             else {
-                AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet, accounts: $accounts, saveAction: saveAccountsFunction)
+                AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet, saveAction: saveAccountsFunction)
             }
         }
         .onAppear {
@@ -65,16 +65,21 @@ struct AccountsView: View {
     
     var searchResults: [Account] {
         if searchQuery.isEmpty {
-            return accounts
+            return accountStore.accounts
         }
         else {
-            return accounts.filter { $0.name.lowercased().contains(searchQuery.lowercased()) || $0.username.lowercased().contains(searchQuery.lowercased()) }
+            return accountStore.accounts.filter { $0.name.lowercased().contains(searchQuery.lowercased()) || $0.username.lowercased().contains(searchQuery.lowercased()) }
         }
     }
 }
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountsView(accounts: .constant(Account.sampleData), saveAccountsFunction: {})
+        AccountsView(saveAccountsFunction: {})
+            .environmentObject({ () -> AccountStore in
+                let store = AccountStore()
+                store.accounts = Account.sampleData
+                return store
+            }())
     }
 }

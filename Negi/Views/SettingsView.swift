@@ -8,7 +8,7 @@ struct SettingsView: View {
         context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
         return context.biometryType == .faceID ? "Face ID" : "Touch ID"
     }
-    @Binding var accounts: [Account]
+    @EnvironmentObject var accountStore: AccountStore
     @State private var isPresntingAlertDialog = false
     @State private var isPresentingExportSheet = false
     
@@ -53,7 +53,7 @@ struct SettingsView: View {
                     }) {
                         Text("Export Accounts")
                     }
-                    .disabled(accounts.count == 0)
+                    .disabled(accountStore.accounts.count == 0)
                 }
                 
                 Section(header: Text("About"), footer: Text("© 2023 CominAtYou. All rights reserved.")) {
@@ -85,6 +85,6 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(accounts: .constant(Account.sampleData))
+        SettingsView()
     }
 }
