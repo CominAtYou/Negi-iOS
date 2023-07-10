@@ -25,15 +25,19 @@ class AccountStore: ObservableObject {
         }
     }
     
-    func save() async throws {
-        let task = Task {
-            let data = try JSONEncoder().encode(accounts)
-            let outFile = try Self.getFileURL()
-            try data.write(to: outFile)
-            
-            NSLog("Wrote %d account(s) to AccountStore", accounts.count)
+    func save() {
+        Task {
+            do {
+                let data = try JSONEncoder().encode(accounts)
+                let outFile = try Self.getFileURL()
+                try data.write(to: outFile)
+                
+                NSLog("Wrote %d account(s) to AccountStore", accounts.count)
+            }
+            catch {
+                // TODO: Do something instead of this
+                fatalError(error.localizedDescription)
+            }
         }
-        
-        _ = try await task.value
     }
 }

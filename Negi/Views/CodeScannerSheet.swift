@@ -6,7 +6,6 @@ struct CodeScannerSheet: View {
     @State private var isPresentingErrorAlert = false
     @Binding var isPresentingCodeScanner: Bool
     @EnvironmentObject var accountStore: AccountStore
-    let saveAccountsFunction: () -> Void
 
     var body: some View {
         NavigationView {
@@ -18,7 +17,7 @@ struct CodeScannerSheet: View {
                             return
                         }
                     accountStore.accounts.append(newAccount)
-                        saveAccountsFunction()
+                    accountStore.save()
 
                         isPresentingMainSheet = false
                         isPresentingCodeScanner = false
@@ -50,6 +49,6 @@ struct CodeScannerSheet: View {
 
 struct CodeScannerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        CodeScannerSheet(isPresentingMainSheet: .constant(false), isPresentingCodeScanner: .constant(false), saveAccountsFunction: {})
+        CodeScannerSheet(isPresentingMainSheet: .constant(false), isPresentingCodeScanner: .constant(false))
     }
 }

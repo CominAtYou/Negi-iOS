@@ -13,7 +13,6 @@ struct AccountDetailsView: View {
     @State private var currentCode = ""
     @State private var nextCode = ""
     @State private var isPresentingAlert = false
-    let saveAction: () -> Void
     
     var body: some View {
         NavigationStack {
@@ -69,7 +68,7 @@ struct AccountDetailsView: View {
                     accountStore.accounts.removeAll(where: {
                         $0.id == account.id
                     })
-                    saveAction()
+                    accountStore.save()
                 }
             )
         }
@@ -78,6 +77,6 @@ struct AccountDetailsView: View {
 
 struct AccountDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15), selectedAccount: .constant(nil), saveAction: {})
+        AccountDetailsView(account: Account.sampleData[0], secondsToNextHop: .constant(15), selectedAccount: .constant(nil))
     }
 }

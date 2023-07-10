@@ -15,17 +15,7 @@ struct NegiApp: App {
                 LockedAppView(isAppLocked: $isAppLocked)
             }
             else {
-                AccountsView() {
-                    Task {
-                        do {
-                            try await accountStore.save()
-                        }
-                        catch {
-                            // TODO: Do something instead of this
-                            fatalError(error.localizedDescription)
-                        }
-                    }
-                }
+                AccountsView()
                 .environmentObject(accountStore)
                 .task {
                     do {

@@ -6,14 +6,14 @@ struct AddAccountSheet: View {
     @Binding var isPresentingAddSheet: Bool
     @EnvironmentObject var accountStore: AccountStore
     
-    let saveAction: () -> Void
     func submitAction() {
         let token = newAccount.token.filter { !$0.isWhitespace }
         isPresentingAddSheet = false
         newAccount.token = base32DecodeToData(token) != nil ? token : base32Encode(token.data(using: .utf8)!)
         accountStore.accounts.append(newAccount)
         newAccount = Account.emptyAccount
-        saveAction()
+        
+        accountStore.save()
     }
     
     var body: some View {
@@ -41,6 +41,6 @@ struct AddAccountSheet: View {
 
 struct AddAccountSheet_Previews: PreviewProvider {
     static var previews: some View {
-        AddAccountSheet(isPresentingAddSheet: .constant(false), saveAction: {})
+        AddAccountSheet(isPresentingAddSheet: .constant(false))
     }
 }

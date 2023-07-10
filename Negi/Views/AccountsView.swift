@@ -10,7 +10,6 @@ struct AccountsView: View {
     @State var isPresentingErrorAlert = false
     @State var isPresentingCodeScanner = false
     @State private var sidebarState = NavigationSplitViewVisibility.doubleColumn
-    let saveAccountsFunction: () -> Void
     
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarState, sidebar: {
@@ -22,7 +21,7 @@ struct AccountsView: View {
                 }
                 .onMove{ from, to in
                     accountStore.accounts.move(fromOffsets: from, toOffset: to)
-                    saveAccountsFunction()
+                    accountStore.save()
                 }
             }
             .navigationTitle("Accounts")
@@ -35,7 +34,7 @@ struct AccountsView: View {
                     SettingsView()
                 }
                 else {
-                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop, selectedAccount: $selectedAccount, saveAction: saveAccountsFunction)
+                    AccountDetailsView(account: selectedAccount, secondsToNextHop: $secondsToNextHop, selectedAccount: $selectedAccount)
                 }
             }
             else {
@@ -49,10 +48,10 @@ struct AccountsView: View {
         .sheet(isPresented: $isPresentingMainSheet) {
             if (isPresentingCodeScanner) {
                 // TODO: Display error if camera permissions aren't enabled
-                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, saveAccountsFunction: saveAccountsFunction)
+                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner)
             }
             else {
-                AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet, saveAction: saveAccountsFunction)
+                AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet)
             }
         }
         .onAppear {
@@ -75,7 +74,7 @@ struct AccountsView: View {
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {
-        AccountsView(saveAccountsFunction: {})
+        AccountsView()
             .environmentObject({ () -> AccountStore in
                 let store = AccountStore()
                 store.accounts = Account.sampleData
