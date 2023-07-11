@@ -8,9 +8,11 @@ struct AccountsView: View {
     @State private var selectedAccount: Account?
     @State var secondsToNextHop = 30
     @State var isPresentingErrorAlert = false
-    @State var isPresentingCodeScanner = false
+    @State var currentSheetView = SheetViewState.scanner
+    @State var newAccount = Account.emptyAccount
     @State private var sidebarState = NavigationSplitViewVisibility.doubleColumn
-    
+
+
     var body: some View {
         NavigationSplitView(columnVisibility: $sidebarState, sidebar: {
             List(selection: $selectedAccount) {
@@ -26,7 +28,7 @@ struct AccountsView: View {
             }
             .navigationTitle("Accounts")
             .toolbar {
-                AccountsViewMenu(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner, selectedAccount: $selectedAccount)
+                AccountsViewMenu(isPresentingMainSheet: $isPresentingMainSheet, currentSheetView: $currentSheetView, selectedAccount: $selectedAccount)
             }
         }, detail: {
             if let selectedAccount {
@@ -46,9 +48,8 @@ struct AccountsView: View {
         .navigationSplitViewStyle(.balanced)
         .searchable(text: $searchQuery)
         .sheet(isPresented: $isPresentingMainSheet) {
-            if (isPresentingCodeScanner) {
-                // TODO: Display error if camera permissions aren't enabled
-                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet, isPresentingCodeScanner: $isPresentingCodeScanner)
+            if (currentSheetView == .scanner) {
+                CodeScannerSheet(isPresentingMainSheet: $isPresentingMainSheet)
             }
             else {
                 AddAccountSheet(isPresentingAddSheet: $isPresentingMainSheet)
@@ -61,7 +62,7 @@ struct AccountsView: View {
             })
         }
     }
-    
+
     var searchResults: [Account] {
         if searchQuery.isEmpty {
             return accountStore.accounts

@@ -4,7 +4,6 @@ import CodeScanner
 struct CodeScannerSheet: View {
     @Binding var isPresentingMainSheet: Bool
     @State private var isPresentingErrorAlert = false
-    @Binding var isPresentingCodeScanner: Bool
     @EnvironmentObject var accountStore: AccountStore
 
     var body: some View {
@@ -20,7 +19,6 @@ struct CodeScannerSheet: View {
                     accountStore.save()
 
                         isPresentingMainSheet = false
-                        isPresentingCodeScanner = false
 
                     case .failure(let error):
                         isPresentingErrorAlert = true
@@ -30,14 +28,12 @@ struct CodeScannerSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
-                        isPresentingCodeScanner = false
                         isPresentingMainSheet = false
                     }
                 }
             }
             .alert(isPresented: $isPresentingErrorAlert) {
                 Alert(title: Text("Invalid QR Code"), message: Text("The scanned QR code is malformed or doesn't contain any account data. Try scanning it again, or enter the details of your account manually."), dismissButton: .default(Text("OK")) {
-                    isPresentingCodeScanner = false
                     isPresentingMainSheet = false
                 })
             }
@@ -49,6 +45,6 @@ struct CodeScannerSheet: View {
 
 struct CodeScannerSheet_Previews: PreviewProvider {
     static var previews: some View {
-        CodeScannerSheet(isPresentingMainSheet: .constant(false), isPresentingCodeScanner: .constant(false))
+        CodeScannerSheet(isPresentingMainSheet: .constant(false))
     }
 }

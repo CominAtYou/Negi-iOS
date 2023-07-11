@@ -18,6 +18,7 @@
 		3E98D1B12A2D932D00B15827 /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E98D1B02A2D932D00B15827 /* AccountStore.swift */; };
 		3E98D1B42A2DA07600B15827 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */; };
 		3E9BD6202A322B230046181A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9BD61F2A322B230046181A /* SettingsView.swift */; };
+		3EA40CBF2A5DC1F700328B38 /* SheetViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA40CBE2A5DC1F700328B38 /* SheetViewState.swift */; };
 		3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EACC2812A2C5B8A00A358C4 /* AccountDetailsView.swift */; };
 		3EACC2862A2C73B700A358C4 /* AddAccountForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EACC2852A2C73B700A358C4 /* AddAccountForm.swift */; };
 		3ECFE9D52A2C4E52001E9AEC /* NegiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECFE9D42A2C4E52001E9AEC /* NegiApp.swift */; };
@@ -41,6 +42,7 @@
 		3E98D1B02A2D932D00B15827 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		3E98D1B32A2DA07600B15827 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E9BD61F2A322B230046181A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3EA40CBE2A5DC1F700328B38 /* SheetViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewState.swift; sourceTree = "<group>"; };
 		3EACC2812A2C5B8A00A358C4 /* AccountDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailsView.swift; sourceTree = "<group>"; };
 		3EACC2852A2C73B700A358C4 /* AddAccountForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountForm.swift; sourceTree = "<group>"; };
 		3ECFE9D12A2C4E52001E9AEC /* Negi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Negi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 			children = (
 				3ECFE9E62A2C5305001E9AEC /* Account.swift */,
 				3E98D1B02A2D932D00B15827 /* AccountStore.swift */,
+				3EA40CBE2A5DC1F700328B38 /* SheetViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				3E370D5C2A2FF7AC008762D9 /* LocalAuthenticationHandler.swift in Sources */,
 				3EACC2862A2C73B700A358C4 /* AddAccountForm.swift in Sources */,
 				3EFF43E92A2D4FDD00510425 /* AddAccountSheet.swift in Sources */,
+				3EA40CBF2A5DC1F700328B38 /* SheetViewState.swift in Sources */,
 				3EDF547E2A3517F800606EA8 /* CameraPermissions.swift in Sources */,
 				3ECFE9D72A2C4E52001E9AEC /* AccountsView.swift in Sources */,
 				3EACC2822A2C5B8A00A358C4 /* AccountDetailsView.swift in Sources */,

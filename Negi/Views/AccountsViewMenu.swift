@@ -3,7 +3,7 @@ import SwiftUI
 struct AccountsViewMenu: View {
     @State var isPresentingErrorAlert = false
     @Binding var isPresentingMainSheet: Bool
-    @Binding var isPresentingCodeScanner: Bool
+    @Binding var currentSheetView: SheetViewState
     @Binding var selectedAccount: Account?
     
     var body: some View {
@@ -12,7 +12,7 @@ struct AccountsViewMenu: View {
                 Button {
                     Task {
                         if await CameraPermissions.requestPermissions() == .authorized {
-                            isPresentingCodeScanner = true
+                            currentSheetView = .scanner
                             isPresentingMainSheet = true
                         }
                         else {
@@ -23,6 +23,7 @@ struct AccountsViewMenu: View {
                     Label("Scan QR Code", systemImage: "qrcode.viewfinder")
                 }
                 Button {
+                    currentSheetView = .form
                     isPresentingMainSheet = true
                 } label: {
                     Label("Add Manually", systemImage: "rectangle.and.pencil.and.ellipsis")
@@ -56,6 +57,6 @@ struct AccountsViewMenu: View {
 
 struct AccountsViewMenu_Previews: PreviewProvider {
     static var previews: some View {
-        AccountsViewMenu(isPresentingMainSheet: .constant(false), isPresentingCodeScanner: .constant(false), selectedAccount: .constant(nil))
+        AccountsViewMenu(isPresentingMainSheet: .constant(false), currentSheetView: .constant(.form), selectedAccount: .constant(nil))
     }
 }
